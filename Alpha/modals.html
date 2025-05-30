@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLFront - Componentes Modales</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome para iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Personalizado -->
+    <link href="css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Encabezado superior dividido en tres columnas -->
+    <div class="header d-flex">
+        <!-- Columna izquierda del encabezado -->
+        <div class="header-left px-3">
+            <img src="assets/img/logo.png" alt="Logo" class="logo w-100">
+        </div>
+        
+        <!-- Columna central del encabezado -->
+        <div class="header-center">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-sm btn-outline-secondary me-2" id="toggleLeftSidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <span class="ms-2">Componentes: Modales</span>
+            </div>
+            
+            <div class="d-flex align-items-center">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar...">
+                    <button class="btn btn-outline-secondary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <!-- Botón de pantalla completa -->
+                <button class="btn btn-outline-secondary ms-2" id="fullscreenBtn">
+                    <i class="fas fa-expand"></i>
+                </button>
+                
+                <!-- Botón de modo claro/oscuro -->
+                <button class="btn btn-outline-secondary ms-2" id="darkModeBtn">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <!-- Botón de mensajes -->
+                <div class="dropdown ms-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="messagesDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-envelope"></i>
+                        <span class="badge bg-danger rounded-pill">5</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="messagesDropdown">
+                        <li><a class="dropdown-item" href="#">Mensaje 1</a></li>
+                        <li><a class="dropdown-item" href="#">Mensaje 2</a></li>
+                        <li><a class="dropdown-item" href="#">Mensaje 3</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Ver todos los mensajes</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Botón de notificaciones -->
+                <div class="dropdown ms-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge bg-danger rounded-pill">3</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                        <li><a class="dropdown-item" href="#">Notificación 1</a></li>
+                        <li><a class="dropdown-item" href="#">Notificación 2</a></li>
+                        <li><a class="dropdown-item" href="#">Notificación 3</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Ver todas las notificaciones</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <img src="https://via.placeholder.com/32" class="rounded-circle me-2" alt="Usuario">
+                        <span>Admin</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configuración</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Columna derecha del encabezado -->
+        <div class="header-right">
+            <button class="btn btn-sm btn-outline-secondary ms-2" id="toggleRightSidebar">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="content-wrapper">
+        <!-- Columna izquierda -->
+        <div class="left-sidebar" id="leftSidebar">
+            <div class="section-header">
+                Navegación
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="cards.html">
+                        <i class="fas fa-th-large"></i>
+                        <span>Cards</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="forms.html">
+                        <i class="fas fa-wpforms"></i>
+                        <span>Formularios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tables.html">
+                        <i class="fas fa-table"></i>
+                        <span>Tablas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="buttons.html">
+                        <i class="fas fa-square"></i>
+                        <span>Botones</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="alerts.html">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Alertas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="modals.html" class="active">
+                        <i class="fas fa-window-maximize"></i>
+                        <span>Modales</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="charts.html">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Gráficos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="fas fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Contenido central -->
+        <div class="main-content" id="mainContent">
+           
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb p-2 bg-light rounded">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="#">Componentes</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Modales</li>
+                </ol>
+            </nav>
+            
+            <!-- Título de la página -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4>Componentes de Modales en Bootstrap 5</h4>
+                <div>
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-code me-1"></i> Ver código
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Modal Básico -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Modal Básico</h5>
+                </div>
+                <div class="card-body">
+                    <p>Modal estándar con cabecera, cuerpo y pie.</p>
+                    <!-- Botón para abrir modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+                        Abrir Modal Básico
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="basicModal" tabindex="-1" aria-labelledby="basicModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="basicModalLabel">Título del Modal</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Este es el cuerpo del modal, donde puedes incluir cualquier contenido.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tamaños de Modal -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Tamaños de Modal</h5>
+                </div>
+                <div class="card-body">
+                    <p>Bootstrap incluye diferentes tamaños para modales: xl, lg, sm, y el predeterminado.</p>
+                    
+                    <!-- Botones para modales de diferentes tamaños -->
+                    <button type="button" class="btn btn-primary me-2 mb-2" data-bs-toggle="modal" data-bs-target="#xlModal">
+                        Modal Extra grande
+                    </button>
+                    <button type="button" class="btn btn-secondary me-2 mb-2" data-bs-toggle="modal" data-bs-target="#lgModal">
+                        Modal Grande
+                    </button>
+                    <button type="button" class="btn btn-success me-2 mb-2" data-bs-toggle="modal" data-bs-target="#defaultModal">
+                        Modal Predeterminado
+                    </button>
+                    <button type="button" class="btn btn-info me-2 mb-2" data-bs-toggle="modal" data-bs-target="#smModal">
+                        Modal Pequeño
+                    </button>
+                    
+                    <!-- Modal XL -->
+                    <div class="modal fade" id="xlModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Modal Extra grande</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Este es un modal extra grande (modal-xl).</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal LG -->
+                    <div class="modal fade" id="lgModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Modal Grande</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Este es un modal grande (modal-lg).</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal Default -->
+                    <div class="modal fade" id="defaultModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Modal Predeterminado</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Este es un modal de tamaño predeterminado.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal SM -->
+                    <div class="modal fade" id="smModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Modal Pequeño</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Este es un modal pequeño (modal-sm).</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modales con formularios y contenido especial -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Modal con Formulario</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Los modales son perfectos para mostrar formularios.</p>
+                            
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal">
+                                Abrir Modal con Formulario
+                            </button>
+                            
+                            <!-- Modal con Formulario -->
+                            <div class="modal fade" id="formModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Iniciar sesión</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="emailInput" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" id="emailInput" placeholder="nombre@ejemplo.com">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="passwordInput" class="form-label">Contraseña</label>
+                                                    <input type="password" class="form-control" id="passwordInput">
+                                                </div>
+                                                <div class="mb-3 form-check">
+                                                    <input type="checkbox" class="form-check-input" id="rememberCheck">
+                                                    <label class="form-check-label" for="rememberCheck">Recordarme</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-primary">Iniciar sesión</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Modal de Confirmación</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Modal para confirmar acciones críticas.</p>
+                            
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                                Eliminar Item
+                            </button>
+                            
+                            <!-- Modal de Confirmación -->
+                            <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger text-white">
+                                            <h5 class="modal-title">Confirmar eliminación</h5>
+                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="text-center mb-3">
+                                                <i class="fas fa-exclamation-triangle text-danger fa-3x"></i>
+                                            </div>
+                                            <p>¿Estás seguro de que deseas eliminar este elemento? Esta acción no se puede deshacer.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-danger">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Columna derecha -->
+        <div class="right-sidebar" id="rightSidebar">
+            <div class="section-header">
+                Información
+            </div>
+            <div class="p-3">
+                <h5>Sobre los Modales</h5>
+                <p>Los modales son ventanas de diálogo que se superponen a la página actual para proporcionar información o solicitar entrada del usuario.</p>
+                
+                <h6 class="mt-4">Características</h6>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Diferentes tamaños</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Cabeceras y pies personalizables</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Opciones de posicionamiento</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Animaciones integradas</li>
+                </ul>
+                
+                <div class="alert alert-info mt-4">
+                    <i class="fas fa-info-circle me-2"></i> Los modales son perfectos para mostrar confirmaciones, formularios y contenido adicional sin cambiar de página.
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h6>Documentación</h6>
+                        <a href="https://getbootstrap.com/docs/5.1/components/modal/" target="_blank" class="btn btn-sm btn-primary mt-2">
+                            <i class="fas fa-external-link-alt me-1"></i> Ver docs de Bootstrap
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- JavaScript personalizado -->
+    <script src="js/dashboard.js"></script>
+    
+    <!-- No se requiere código JavaScript adicional para esta página. 
+         Toda la funcionalidad está centralizada en dashboard.js -->
+</body>
+</html>
+

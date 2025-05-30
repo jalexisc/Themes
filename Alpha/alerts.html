@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLFront - Componentes Alertas</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome para iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Personalizado -->
+    <link href="css/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Encabezado superior dividido en tres columnas -->
+    <div class="header d-flex">
+        <!-- Columna izquierda del encabezado -->
+        <div class="header-left px-3">
+            <img src="assets/img/logo.png" alt="Logo" class="logo w-100">
+        </div>
+        
+        <!-- Columna central del encabezado -->
+        <div class="header-center">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-sm btn-outline-secondary me-2" id="toggleLeftSidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <span class="ms-2">Componentes: Alertas</span>
+            </div>
+            
+            <div class="d-flex align-items-center">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar...">
+                    <button class="btn btn-outline-secondary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <!-- Botón de pantalla completa -->
+                <button class="btn btn-outline-secondary ms-2" id="fullscreenBtn">
+                    <i class="fas fa-expand"></i>
+                </button>
+                
+                <!-- Botón de modo claro/oscuro -->
+                <button class="btn btn-outline-secondary ms-2" id="darkModeBtn">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <!-- Botón de mensajes -->
+                <div class="dropdown ms-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="messagesDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-envelope"></i>
+                        <span class="badge bg-danger rounded-pill">5</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="messagesDropdown">
+                        <li><a class="dropdown-item" href="#">Mensaje 1</a></li>
+                        <li><a class="dropdown-item" href="#">Mensaje 2</a></li>
+                        <li><a class="dropdown-item" href="#">Mensaje 3</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Ver todos los mensajes</a></li>
+                    </ul>
+                </div>
+                <!-- Botón de notificaciones -->
+                <div class="dropdown ms-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge bg-danger rounded-pill">3</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                        <li><a class="dropdown-item" href="#">Notificación 1</a></li>
+                        <li><a class="dropdown-item" href="#">Notificación 2</a></li>
+                        <li><a class="dropdown-item" href="#">Notificación 3</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Ver todas las notificaciones</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <img src="https://via.placeholder.com/32" class="rounded-circle me-2" alt="Usuario">
+                        <span>Admin</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configuración</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Columna derecha del encabezado -->
+        <div class="header-right">
+            <button class="btn btn-sm btn-outline-secondary ms-2" id="toggleRightSidebar">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="content-wrapper">
+        <!-- Columna izquierda -->
+        <div class="left-sidebar" id="leftSidebar">
+            <div class="section-header">
+                Navegación
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="cards.html">
+                        <i class="fas fa-th-large"></i>
+                        <span>Cards</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="forms.html">
+                        <i class="fas fa-wpforms"></i>
+                        <span>Formularios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tables.html">
+                        <i class="fas fa-table"></i>
+                        <span>Tablas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="buttons.html">
+                        <i class="fas fa-square"></i>
+                        <span>Botones</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="alerts.html" class="active">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Alertas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="modals.html">
+                        <i class="fas fa-window-maximize"></i>
+                        <span>Modales</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="charts.html">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Gráficos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html">
+                        <i class="fas fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Contenido central -->
+        <div class="main-content" id="mainContent">
+           
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb p-2 bg-light rounded">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="#">Componentes</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Alertas</li>
+                </ol>
+            </nav>
+            
+            <!-- Título de la página -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4>Componentes de Alertas en Bootstrap 5</h4>
+                <div>
+                    <button class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-code me-1"></i> Ver código
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Alertas Básicas -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Alertas Básicas</h5>
+                </div>
+                <div class="card-body">
+                    <p>Las alertas están disponibles para cualquier longitud de texto, así como un botón para cerrarlas.</p>
+                    
+                    <div class="alert alert-primary" role="alert">
+                        Esta es una alerta primary — ¡Échale un vistazo!
+                    </div>
+                    <div class="alert alert-secondary" role="alert">
+                        Esta es una alerta secondary — ¡Échale un vistazo!
+                    </div>
+                    <div class="alert alert-success" role="alert">
+                        Esta es una alerta success — ¡Échale un vistazo!
+                    </div>
+                    <div class="alert alert-danger" role="alert">
+                        Esta es una alerta danger — ¡Échale un vistazo!
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        Esta es una alerta warning — ¡Échale un vistazo!
+                    </div>
+                    <div class="alert alert-info" role="alert">
+                        Esta es una alerta info — ¡Échale un vistazo!
+                    </div>
+                    <div class="alert alert-light" role="alert">
+                        Esta es una alerta light — ¡Échale un vistazo!
+                    </div>
+                    <div class="alert alert-dark" role="alert">
+                        Esta es una alerta dark — ¡Échale un vistazo!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Alertas con Iconos y Adicionales -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Alertas con Iconos</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Personaliza tus alertas añadiendo iconos para mejorar la experiencia visual.</p>
+                            
+                            <div class="alert alert-primary d-flex align-items-center" role="alert">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <div>
+                                    Información importante sobre esta acción.
+                                </div>
+                            </div>
+                            <div class="alert alert-success d-flex align-items-center" role="alert">
+                                <i class="fas fa-check-circle me-2"></i>
+                                <div>
+                                    ¡Operación completada con éxito!
+                                </div>
+                            </div>
+                            <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                <div>
+                                    Advertencia: Esta acción no se puede deshacer.
+                                </div>
+                            </div>
+                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <i class="fas fa-times-circle me-2"></i>
+                                <div>
+                                    Error: No se pudo completar la operación.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">Alertas con Contenido Adicional</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Las alertas pueden contener elementos adicionales como encabezados, párrafos y divisores.</p>
+                            
+                            <div class="alert alert-success" role="alert">
+                                <h4 class="alert-heading">¡Bien hecho!</h4>
+                                <p>Has completado con éxito esta importante acción. Este ejemplo de texto va a seguir ejecutándose un rato para que puedas ver cómo funciona el espaciado dentro de una alerta con este tipo de contenido.</p>
+                                <hr>
+                                <p class="mb-0">Siempre que sea necesario, asegúrate de usar utilidades de margen para mantener las cosas ordenadas y espaciadas.</p>
+                            </div>
+                            
+                            <div class="alert alert-info" role="alert">
+                                <h4 class="alert-heading">Información</h4>
+                                <p>Aquí hay información adicional para tus acciones. Presta atención a estos detalles importantes.</p>
+                                <hr>
+                                <button class="btn btn-sm btn-info">Más información</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Alertas Descartables -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Alertas Descartables</h5>
+                </div>
+                <div class="card-body">
+                    <p>Añade un botón de cerrar para descartar cualquier alerta.</p>
+                    
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>¡Atención!</strong> Deberías revisar algunos de esos campos a continuación.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>¡Error!</strong> Ha ocurrido un problema con tu envío.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>¡Éxito!</strong> Los cambios han sido guardados correctamente.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Alertas animadas -->
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Alertas Animadas</h5>
+                    <button class="btn btn-sm btn-primary" id="showAlertDemo">Mostrar Alerta</button>
+                </div>
+                <div class="card-body">
+                    <p>Las alertas pueden aparecer y desaparecer con animaciones usando JavaScript.</p>
+                    
+                    <div id="liveAlertPlaceholder"></div>
+                    
+                    <div class="mt-3">
+                        <h6>Código para crear una alerta dinámicamente:</h6>
+                        <pre><code>
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+
+const alert = (message, type) => {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = `
+    <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>`;
+
+  alertPlaceholder.append(wrapper);
+}
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Columna derecha -->
+        <div class="right-sidebar" id="rightSidebar">
+            <div class="section-header">
+                Información
+            </div>
+            <div class="p-3">
+                <h5>Sobre las Alertas</h5>
+                <p>Las alertas proporcionan mensajes de retroalimentación para las acciones típicas del usuario.</p>
+                
+                <h6 class="mt-4">Características</h6>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Múltiples variantes</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Contenido flexible</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Botones de cierre</li>
+                    <li><i class="fas fa-check-circle text-success me-2"></i> Animaciones integradas</li>
+                </ul>
+                
+                <div class="alert alert-info mt-4">
+                    <i class="fas fa-info-circle me-2"></i> Las alertas son útiles para mostrar mensajes de éxito, error, advertencia o información.
+                </div>
+                
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h6>Documentación</h6>
+                        <a href="https://getbootstrap.com/docs/5.1/components/alerts/" target="_blank" class="btn btn-sm btn-primary mt-2">
+                            <i class="fas fa-external-link-alt me-1"></i> Ver docs de Bootstrap
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- JavaScript personalizado -->
+    <script src="js/dashboard.js"></script>
+    
+    <!-- Script específico de esta página -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar alerta de demostración - Este código es específico de esta página
+            const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+            const showAlertDemo = document.getElementById('showAlertDemo');
+            
+            if (showAlertDemo && alertPlaceholder) {
+                showAlertDemo.addEventListener('click', function () {
+                    const wrapper = document.createElement('div');
+                    wrapper.innerHTML = `
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <strong>¡Alerta generada dinámicamente!</strong> Esta es una demostración de una alerta creada con JavaScript.
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>`;
+                    
+                    alertPlaceholder.innerHTML = '';  // Limpiar alertas previas
+                    alertPlaceholder.append(wrapper);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

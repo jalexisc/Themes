@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLFront - Perfil de Usuario</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome para iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Personalizado -->
+    <link href="css/dashboard.css" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Encabezado superior dividido en tres columnas -->
+    <div class="header d-flex">
+        <!-- Columna izquierda del encabezado -->
+        <div class="header-left">
+            <h4 class="m-0 text-primary">SQLFront</h4>
+        </div>
+        
+        <!-- Columna central del encabezado -->
+        <div class="header-center">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-sm btn-outline-secondary me-2" id="toggleLeftSidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <span class="ms-2">Portal > Dashboard</span>
+            </div>
+            
+            <div class="d-flex">
+                <div class="input-group" style="width: 300px;">
+                    <input type="text" class="form-control form-control-sm" placeholder="Buscar...">
+                    <button class="btn btn-outline-secondary btn-sm" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <!-- Botón de pantalla completa -->
+                <button class="btn btn-outline-secondary btn-sm ms-2" id="fullscreenBtn">
+                    <i class="fas fa-expand"></i>
+                </button>
+                
+                <!-- Botón de modo claro/oscuro -->
+                <button class="btn btn-outline-secondary btn-sm ms-2" id="darkModeBtn">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <div class="dropdown me-3">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge bg-danger rounded-pill">3</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                        <li><a class="dropdown-item" href="#">Notificación 1</a></li>
+                        <li><a class="dropdown-item" href="#">Notificación 2</a></li>
+                        <li><a class="dropdown-item" href="#">Notificación 3</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <img src="https://via.placeholder.com/32" class="rounded-circle me-2" alt="Usuario">
+                        <span>Admin</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configuración</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Columna derecha del encabezado -->
+        <div class="header-right">
+            <button class="btn btn-sm btn-outline-secondary ms-2" id="toggleRightSidebar">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="content-wrapper">
+        <!-- Columna izquierda -->
+        <div class="left-sidebar" id="leftSidebar">
+            <div class="section-header">
+                Navegación
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="cards.html">
+                        <i class="fas fa-th-large"></i>
+                        <span>Cards</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="forms.html">
+                        <i class="fas fa-wpforms"></i>
+                        <span>Formularios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tables.html">
+                        <i class="fas fa-table"></i>
+                        <span>Tablas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="buttons.html">
+                        <i class="fas fa-square"></i>
+                        <span>Botones</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="alerts.html">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Alertas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="modals.html">
+                        <i class="fas fa-window-maximize"></i>
+                        <span>Modales</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="charts.html">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Gráficos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="active">
+                        <i class="fas fa-user"></i>
+                        <span>Perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+            </ul>
+                </div>
+        
+        <!-- Contenido central -->
+        <div class="main-content" id="mainContent">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb p-2 bg-light rounded">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Perfil</li>
+                </ol>
+            </nav>
+            
+            <!-- Encabezado del perfil -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="fw-bold">Buenos días Jhon</h2>
+                </div>
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-outline-secondary me-3">
+                        <i class="fas fa-plus me-2"></i> Añadir widget
+                    </button>
+                    <button class="btn btn-outline-secondary me-3">
+                        <i class="far fa-calendar me-2"></i> 18 - 22 Noviembre
+                    </button>
+                    <button class="btn btn-success">
+                        <i class="fas fa-plus me-2"></i> Añadir reporte
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Primera fila: Perfil y estadísticas -->
+            <div class="row mb-4">
+                <!-- Tarjeta de perfil -->
+                <div class="col-md-3">
+                    <div class="card rounded-4 border-0 shadow-sm mb-4">
+                        <div class="card-body p-0">
+                            <div class="position-relative">
+                                <img src="https://via.placeholder.com/400x250" class="card-img-top rounded-top-4" alt="Fondo de perfil">
+                                <div class="position-absolute bottom-0 start-50 translate-middle-x mb-n4">
+                                    <img src="https://via.placeholder.com/120" class="rounded-circle border border-3 border-white" alt="Foto de perfil">
+                                </div>
+                            </div>
+                            <div class="text-center pt-5 pb-3">
+                                <div class="badge bg-dark p-2 mb-2">4+ años experiencia</div>
+                                <h5 class="fw-bold">Chris Jonathan</h5>
+                                <p class="text-muted">Gerente general</p>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button class="btn btn-light rounded-circle me-2"><i class="fas fa-phone"></i></button>
+                                    <button class="btn btn-light rounded-circle"><i class="fas fa-envelope"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card rounded-4 border-0 shadow-sm">
+                        <div class="card-body">
+                            <h6 class="text-muted mb-3">Tiempo promedio de trabajo</h6>
+                            <h3 class="fw-bold">46 horas <span class="text-success small">+0.5% <i class="fas fa-arrow-up"></i></span></h3>
+                            <div id="workTimeChart" style="height: 100px;"></div>
+                            <div class="d-flex justify-content-between text-muted small">
+                                <span>10 H</span>
+                                <span>8 H</span>
+                                <span>6 H</span>
+                                <span>4 H</span>
+                            </div>
+                            <p class="text-muted small mt-3">Total horas de trabajo incluye horas extra</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tarjetas de estadísticas -->
+                <div class="col-md-9">
+                    <div class="row">
+                        <!-- Gráfico de horas semanales -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card rounded-4 border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-2">
+                                                <i class="fas fa-clock text-primary"></i>
+                                            </div>
+                                            <div class="small text-muted">prom horas / semanas</div>
+                                        </div>
+                                        <div>
+                                            <h3 class="fw-bold mb-0">46,5</h3>
+                                            <span class="badge bg-success">+0.5%</span>
+                                        </div>
+                                    </div>
+                                    <div id="activityChart" style="height: 120px;"></div>
+                                    <div class="d-flex justify-content-between text-muted small mt-2">
+                                        <span><i class="fas fa-circle text-primary"></i> 2 Horas</span>
+                                        <span><i class="fas fa-circle text-secondary"></i> 10 Horas</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Estadísticas de equipo -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card rounded-4 border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="mb-4">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-2">
+                                                    <i class="fas fa-users text-primary"></i>
+                                                </div>
+                                            </div>
+                                            <div class="text-end">
+                                                <h3 class="fw-bold mb-0">80%</h3>
+                                                <span class="text-success">+2.6% <i class="fas fa-arrow-up"></i></span>
+                                            </div>
+                                        </div>
+                                        <p class="small text-muted">Equipo presencial</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-2">
+                                                    <i class="fas fa-laptop-house text-primary"></i>
+                                                </div>
+                                            </div>
+                                            <div class="text-end">
+                                                <h3 class="fw-bold mb-0">20%</h3>
+                                                <span class="text-success">+2.6% <i class="fas fa-arrow-up"></i></span>
+                                            </div>
+                                        </div>
+                                        <p class="small text-muted">Equipo remoto</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <!-- Seguimiento del equipo -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card rounded-4 border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h6 class="text-muted mb-0">Total empleados</h6>
+                                        <a href="#" class="text-decoration-none">Ver más <i class="fas fa-chevron-right small"></i></a>
+                                    </div>
+                                    <h5 class="fw-bold mb-3">Seguimiento de tu equipo</h5>
+                                    
+                                    <div class="position-relative mb-4" style="height: 120px;">
+                                        <div id="teamChart" style="height: 120px;"></div>
+                                        <div class="position-absolute top-50 start-50 translate-middle text-center">
+                                            <h3 class="fw-bold mb-0">120</h3>
+                                            <p class="small text-muted">Total miembros</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <div>
+                                                <i class="fas fa-circle text-success me-2"></i>
+                                                <span>Diseñador</span>
+                                            </div>
+                                            <span>48 miembros</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <div>
+                                                <i class="fas fa-circle text-primary me-2"></i>
+                                                <span>Desarrollador</span>
+                                            </div>
+                                            <span>27 miembros</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <i class="fas fa-circle text-secondary me-2"></i>
+                                                <span>Project manager</span>
+                                            </div>
+                                            <span>18 miembros</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Reclutamiento de talento -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card rounded-4 border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h6 class="text-muted mb-0">Estadísticas de contratación</h6>
+                                        <a href="#" class="text-decoration-none">Ver más <i class="fas fa-chevron-right small"></i></a>
+                                    </div>
+                                    <h5 class="fw-bold mb-3">Reclutamiento de talento</h5>
+                                    
+                                    <div class="d-flex mb-4">
+                                        <div class="me-3">
+                                            <img src="https://via.placeholder.com/80" class="rounded-3" alt="Candidato 1">
+                                        </div>
+                                        <div class="me-3">
+                                            <img src="https://via.placeholder.com/80" class="rounded-3" alt="Candidato 2">
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-center bg-primary rounded-3" style="width: 80px; height: 80px;">
+                                            <span class="text-white">Ver todo</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>120 Talento</span>
+                                        <span>80 Talento</span>
+                                    </div>
+                                    
+                                    <div class="progress mb-4" style="height: 10px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-light" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between text-muted small">
+                                        <span><i class="fas fa-circle text-success me-1"></i> Coincide</span>
+                                        <span><i class="fas fa-circle text-secondary me-1"></i> No coincide</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Columna derecha -->
+        <div class="right-sidebar" id="rightSidebar">
+            <div class="section-header">
+                Salarios e incentivos
+            </div>
+            
+            <div class="p-3">
+                <div class="employee-list mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Empleado">
+                            <div>
+                                <h6 class="mb-0">Syafrullah san</h6>
+                                <p class="small text-muted mb-0">$2,540.00</p>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="badge bg-warning text-dark">Pendiente</span>
+                            <p class="small text-muted mb-0">Hoy</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Empleado">
+                            <div>
+                                <h6 class="mb-0">Devon Lane</h6>
+                                <p class="small text-muted mb-0">$2,540.00</p>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="badge bg-success">Completado</span>
+                            <p class="small text-muted mb-0">Hoy</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Empleado">
+                            <div>
+                                <h6 class="mb-0">Marvin McKinney</h6>
+                                <p class="small text-muted mb-0">$2,540.00</p>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="badge bg-success">Completado</span>
+                            <p class="small text-muted mb-0">Ayer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Empleado">
+                            <div>
+                                <h6 class="mb-0">Devon Lane</h6>
+                                <p class="small text-muted mb-0">$2,540.00</p>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="badge bg-success">Completado</span>
+                            <p class="small text-muted mb-0">Ayer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center">
+                            <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="Empleado">
+                            <div>
+                                <h6 class="mb-0">Eleanor Pena</h6>
+                                <p class="small text-muted mb-0">$2,540.00</p>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="badge bg-danger">Fallido</span>
+                            <p class="small text-muted mb-0">Ayer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-primary text-white rounded-4 mb-3">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <h6 class="mb-0">Salario base</h6>
+                            <p class="fw-bold mb-0">$2,040</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="mb-0">Rendimiento</h6>
+                            <p class="fw-bold mb-0">$300</p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="mb-0">Regalo</h6>
+                            <p class="fw-bold mb-0">$200</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-0">Pago neto</h6>
+                                <h4 class="fw-bold mb-0">100%</h4>
+                            </div>
+                            <div>
+                                <h6 class="mb-0">Lleva a casa</h6>
+                                <h4 class="fw-bold mb-0">$2,540.00</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript personalizado -->
+    <script src="js/dashboard.js"></script>
+    
+    <!-- Script específico de esta página -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // El código de interfaz común (sidebars, modo oscuro/claro) está en dashboard.js
+            
+            // Inicializar gráficos si existe Chart.js
+            if (typeof Chart !== 'undefined') {
+                // Gráfico de tiempo de trabajo
+                if (document.getElementById('workTimeChart')) {
+                    const workTimeCtx = document.getElementById('workTimeChart').getContext('2d');
+                    new Chart(workTimeCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'],
+                            datasets: [{
+                                label: 'Horas de trabajo',
+                                data: [8, 7.5, 9, 8.5, 8, 5, 0],
+                                fill: false,
+                                borderColor: '#198754',
+                                tension: 0.4,
+                                pointBackgroundColor: '#198754',
+                                pointRadius: 4,
+                                pointHoverRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    display: false
+                                },
+                                y: {
+                                    display: false,
+                                    suggestedMin: 0,
+                                    suggestedMax: 10
+                                }
+                            },
+                            elements: {
+                                point: {
+                                    radius: 0
+                                }
+                            }
+                        }
+                    });
+                }
+                
+                // Gráfico de actividad semanal
+                if (document.getElementById('activityChart')) {
+                    const activityCtx = document.getElementById('activityChart').getContext('2d');
+                    new Chart(activityCtx, {
+                        type: 'bubble',
+                        data: {
+                            datasets: [{
+                                data: [
+                                    {x: 1, y: 1, r: 5},
+                                    {x: 2, y: 2, r: 5},
+                                    {x: 3, y: 1, r: 5},
+                                    {x: 4, y: 3, r: 5},
+                                    {x: 5, y: 2, r: 5},
+                                    {x: 6, y: 1, r: 5},
+                                    {x: 7, y: 2, r: 5},
+                                    {x: 8, y: 3, r: 5},
+                                    {x: 9, y: 1, r: 5},
+                                    {x: 10, y: 2, r: 5},
+                                    {x: 11, y: 3, r: 5},
+                                    {x: 12, y: 2, r: 5},
+                                    {x: 13, y: 1, r: 5},
+                                    {x: 14, y: 3, r: 5},
+                                    {x: 15, y: 2, r: 5}
+                                ],
+                                backgroundColor: '#0d6efd',
+                                borderColor: 'transparent'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                },
+                                tooltip: {
+                                    enabled: false
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    display: false,
+                                    grid: {
+                                        display: false
+                                    }
+                                },
+                                y: {
+                                    display: false,
+                                    grid: {
+                                        display: false
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+                
+                // Gráfico de equipo (semicírculo)
+                if (document.getElementById('teamChart')) {
+                    const teamCtx = document.getElementById('teamChart').getContext('2d');
+                    new Chart(teamCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Diseñador', 'Desarrollador', 'Project Manager'],
+                            datasets: [{
+                                data: [48, 27, 18],
+                                backgroundColor: ['#198754', '#0d6efd', '#6c757d'],
+                                borderWidth: 0,
+                                cutout: '70%'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            },
+                            rotation: -90,
+                            circumference: 180
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
