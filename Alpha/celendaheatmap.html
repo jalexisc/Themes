@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Heatmap - Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <style>
+        .calendar {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+      overflow-x: auto;
+    }
+    .day-column {
+      display: grid;
+      grid-template-rows: auto repeat(7, minmax(15px, auto));
+      row-gap: 0.25rem;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+    .day-column .header {
+      /* espacio en blanco para encabezado */
+      height: 1.5rem;
+    }
+    .day-column .day-label {
+      font-size: 0.75rem;
+      line-height: 1;
+      height: auto;
+      text-align: right;
+      padding-right: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .months-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 0.5rem;
+      width: 100%;
+      overflow-x: auto;
+    }
+    .month-block {
+      display: grid;
+      grid-template-rows: auto;
+      min-width: 0;
+    }
+    .month-header {
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .month-heatmap {
+      display: grid;
+      grid-template-rows: repeat(7, minmax(15px, auto));
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.25rem;
+      aspect-ratio: 4/7;
+    }
+    .cell {
+      width: 100%;
+      min-width: 15px;
+      height: auto;
+      aspect-ratio: 1/1;
+      border-radius: 3px;
+    }
+        .level-0 { background: #ebedf0; }
+        .level-1 { background: #9be9a8; }
+        .level-2 { background: #40c463; }
+        .level-3 { background: #30a14e; }
+        .level-4 { background: #216e39; }
+    </style>
+</head>
+<body>
+    <!-- Encabezado superior -->
+    <div class="header d-flex">
+        <div class="header-left px-3">
+            <img src="assets/img/logo.png" alt="Logo" class="logo w-100">
+        </div>
+        <div class="header-center">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-sm btn-outline-secondary me-2" id="toggleLeftSidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <span class="ms-2">Demo Bootstrap 5</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar...">
+                    <button class="btn btn-outline-secondary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <button class="btn btn-outline-secondary ms-2" id="fullscreenBtn">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="btn btn-outline-secondary ms-2" id="darkModeBtn">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="dropdown ms-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="messagesDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-envelope"></i>
+                        <span class="badge bg-danger rounded-pill">5</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="messagesDropdown">
+                        <li><a class="dropdown-item" href="#">Mensaje 1</a></li>
+                        <li><a class="dropdown-item" href="#">Mensaje 2</a></li>
+                        <li><a class="dropdown-item" href="#">Mensaje 3</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Ver todos los mensajes</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown ms-2">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge bg-danger rounded-pill">3</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                        <li><a class="dropdown-item" href="#">Notificación 1</a></li>
+                        <li><a class="dropdown-item" href="#">Notificación 2</a></li>
+                        <li><a class="dropdown-item" href="#">Notificación 3</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Ver todas las notificaciones</a></li>
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <img src="https://via.placeholder.com/32" class="rounded-circle me-2" alt="Usuario">
+                        <span>Admin</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configuración</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="btn btn-sm btn-outline-secondary ms-2" id="toggleRightSidebar">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Contenedor principal con 3 columnas -->
+    <div class="content-wrapper">
+        <!-- Columna izquierda -->
+        <div class="left-sidebar" id="leftSidebar">
+            <div class="section-header">Navegación</div>
+            <ul class="sidebar-menu">
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li><a href="cards.html"><i class="fas fa-th-large"></i><span>Cards</span></a></li>
+                <li><a href="forms.html"><i class="fas fa-wpforms"></i><span>Formularios</span></a></li>
+                <li><a href="tables.html"><i class="fas fa-table"></i><span>Tablas</span></a></li>
+                <li><a href="buttons.html"><i class="fas fa-square"></i><span>Botones</span></a></li>
+                <li><a href="alerts.html"><i class="fas fa-exclamation-triangle"></i><span>Alertas</span></a></li>
+                <li><a href="modals.html"><i class="fas fa-window-maximize"></i><span>Modales</span></a></li>
+                <li><a href="charts.html"><i class="fas fa-chart-bar"></i><span>Gráficos</span></a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i><span>Perfil</span></a></li>
+                <li><a href="buttongroup.html"><i class="fas fa-object-group"></i><span>Button Group</span></a></li>
+                <li><a href="carousel.html"><i class="fas fa-images"></i><span>Carousel</span></a></li>
+                <li><a href="closebutton.html"><i class="fas fa-times-circle"></i><span>Close Button</span></a></li>
+                <li><a href="collapse.html"><i class="fas fa-compress-alt"></i><span>Collapse</span></a></li>
+                <li><a href="listgroup.html"><i class="fas fa-list"></i><span>List Group</span></a></li>
+                <li><a href="navtabs.html"><i class="fas fa-folder"></i><span>Navs & Tabs</span></a></li>
+                <li><a href="pagination.html"><i class="fas fa-ellipsis-h"></i><span>Pagination</span></a></li>
+                <li><a href="popovers.html"><i class="fas fa-comment-dots"></i><span>Popovers</span></a></li>
+                <li><a href="progress.html"><i class="fas fa-tasks"></i><span>Progress</span></a></li>
+                <li><a href="spinners.html"><i class="fas fa-spinner"></i><span>Spinners</span></a></li>
+                <li><a href="toasts.html"><i class="fas fa-bread-slice"></i><span>Toasts</span></a></li>
+                <li><a href="tooltips.html"><i class="fas fa-question-circle"></i><span>Tooltips</span></a></li>
+                <li><a href="offcanvas.html"><i class="fas fa-bars"></i><span>Offcanvas</span></a></li>
+                <li><a href="accordion.html"><i class="fas fa-align-justify"></i><span>Accordion</span></a></li>
+                <li><a href="celendaheatmap.html" class="active"><i class="fas fa-calendar-alt"></i><span>Calendar Heatmap</span></a></li>
+            </ul>
+        </div>
+        <!-- Contenido central -->
+        <div class="main-content" id="mainContent">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb p-2 bg-light rounded">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Calendar Heatmap</li>
+                </ol>
+            </nav>
+            <div class="container-fluid">
+                <h1 class="mb-4">Calendar Heatmap</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Contribuciones últimos 12 meses (4 semanas x mes)</h5>
+                        <div class="calendar">
+                            <!-- columna de días -->
+                            <div class="day-column">
+                                <div class="header"></div>
+                                <div class="day-label">Lun</div>
+                                <div class="day-label">Mar</div>
+                                <div class="day-label">Mié</div>
+                                <div class="day-label">Jue</div>
+                                <div class="day-label">Vie</div>
+                                <div class="day-label">Sáb</div>
+                                <div class="day-label">Dom</div>
+                            </div>
+                            <!-- contenedor de meses -->
+                            <div class="months-container" id="months-container">
+                                <!-- Month blocks will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Columna derecha -->
+        <div class="right-sidebar" id="rightSidebar">
+            <div class="section-header">Información</div>
+            <div class="p-3 border-bottom">
+                <h6 class="mb-3 small">Conexiones activas</h6>
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1 small">Conexión Local</h6>
+                                <small class="text-muted">MySQL</small>
+                            </div>
+                            <span class="badge bg-success rounded-pill">Activa</span>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1 small">Servidor de Producción</h6>
+                                <small class="text-muted">PostgreSQL</small>
+                            </div>
+                            <span class="badge bg-secondary rounded-pill">Inactiva</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="d-grid mt-3">
+                    <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus me-1"></i> Nueva conexión
+                    </button>
+                </div>
+            </div>
+            <div class="p-3">
+                <h6 class="mb-3 small">Historial de consultas</h6>
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item list-group-item-action py-2">
+                        <small>SELECT * FROM usuarios WHERE activo = 1</small>
+                        <div class="d-flex justify-content-between align-items-center mt-1">
+                            <span class="badge bg-primary">MySQL</span>
+                            <small class="text-muted">Hace 5 min</small>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2">
+                        <small>UPDATE productos SET precio = precio * 1.1</small>
+                        <div class="d-flex justify-content-between align-items-center mt-1">
+                            <span class="badge bg-success">PostgreSQL</span>
+                            <small class="text-muted">Hace 15 min</small>
+                        </div>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action py-2">
+                        <small>SELECT COUNT(*) FROM pedidos GROUP BY estado</small>
+                        <div class="d-flex justify-content-between align-items-center mt-1">
+                            <span class="badge bg-primary">MySQL</span>
+                            <small class="text-muted">Hace 30 min</small>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar tooltips
+            if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            }
+            
+            // Código específico del calendar heatmap
+            const container = document.getElementById('months-container');
+            const monthNames = Array.from({length: 12}, (_, i) =>
+                new Date(0, i).toLocaleString('default', {month: 'long'})
+            );
+
+            // Función para actualizar el diseño en diferentes tamaños de pantalla
+            function updateHeatmapLayout() {
+                // Limpiar contenedor para evitar duplicados
+                container.innerHTML = '';
+                
+                // Determinar cuántos meses mostrar basado en el ancho disponible
+                let visibleMonths = 12;
+                const containerWidth = container.offsetWidth;
+                if (containerWidth < 768) {
+                    visibleMonths = 3;
+                } else if (containerWidth < 992) {
+                    visibleMonths = 6;
+                } else if (containerWidth < 1200) {
+                    visibleMonths = 9;
+                }
+                
+                // Ajustar el CSS grid para mostrar el número adecuado de meses
+                container.style.gridTemplateColumns = `repeat(${visibleMonths}, 1fr)`;
+                
+                // Crear los bloques de meses
+                monthNames.forEach(month => {
+                    const block = document.createElement('div');
+                    block.className = 'month-block';
+
+                    const header = document.createElement('div');
+                    header.className = 'month-header';
+                    header.textContent = month;
+                    block.appendChild(header);
+
+                    const heatmap = document.createElement('div');
+                    heatmap.className = 'month-heatmap';
+                    for (let i = 0; i < 28; i++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'cell';
+                        const level = Math.floor(Math.random() * 5);
+                        cell.classList.add(`level-${level}`);
+                        cell.setAttribute('data-bs-toggle', 'tooltip');
+                        cell.setAttribute('title', `${level} contribuciones`);
+                        heatmap.appendChild(cell);
+                    }
+                    block.appendChild(heatmap);
+
+                    container.appendChild(block);
+                });
+                
+                // Reinicializar tooltips
+                if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+                    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                        return new bootstrap.Tooltip(tooltipTriggerEl);
+                    });
+                }
+            }
+            
+            // Inicializar el heatmap
+            updateHeatmapLayout();
+            
+            // Actualizar cuando cambie el tamaño de la ventana
+            window.addEventListener('resize', updateHeatmapLayout);
+        });
+    </script>
+</body>
+</html>

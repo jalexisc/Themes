@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#5C6B8B">
     <title>Higgs Dashboard</title>
     
     <!-- Bootstrap 5 CSS -->
@@ -16,9 +18,153 @@
     
     <!-- CSS Personalizado -->
     <link href="css/dashboard.css" rel="stylesheet">
+    
+    <style>
+    /* Estilos adicionales para dispositivos móviles */
+    /* Header móvil simplificado */
+    .mobile-header {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--header-height);
+        background-color: var(--card-bg);
+        box-shadow: var(--shadow);
+        padding: 0.5rem 1rem;
+        z-index: 1040;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .mobile-header .mobile-brand {
+        display: flex;
+        align-items: center;
+    }
+    
+    .mobile-header .mobile-brand img {
+        height: 30px;
+        width: auto;
+        margin-right: 0.5rem;
+    }
+    
+    .mobile-header .mobile-actions {
+        display: flex;
+        align-items: center;
+    }
+    
+    .mobile-header .mobile-title {
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: var(--secondary-color);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: auto;
+        margin-left: 0.5rem;
+    }
+    
+    /* Estilos adicionales para dispositivos móviles */
+    @media (max-width: 767.98px) {
+        body {
+            padding-top: var(--header-height);
+        }
+        
+        /* Mostrar header móvil y ocultar header normal */
+        .mobile-header {
+            display: flex;
+        }
+        
+        .header {
+            display: none !important;
+        }
+        
+        .content-wrapper {
+            display: block;
+            position: relative;
+        }
+        
+        .left-sidebar, .right-sidebar {
+            position: fixed;
+            top: var(--header-height);
+            bottom: 0;
+            z-index: 1030;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            width: 80%;
+            max-width: 280px;
+        }
+        
+        .left-sidebar {
+            left: 0;
+            transform: translateX(-100%);
+        }
+        
+        .right-sidebar {
+            right: 0;
+            transform: translateX(100%);
+        }
+        
+        .left-sidebar.show {
+            transform: translateX(0);
+        }
+        
+        .right-sidebar.show {
+            transform: translateX(0);
+        }
+        
+        .main-content {
+            margin-left: 0;
+            margin-right: 0;
+            width: 100%;
+            padding: 1rem;
+        }
+        
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1020;
+        }
+        
+        .mobile-overlay.show {
+            display: block;
+        }
+    }
+    </style>
 </head>
 <body>
-    <!-- Encabezado superior dividido en tres columnas -->
+    <!-- Header móvil para dispositivos pequeños -->
+    <div class="mobile-header">
+        <div class="mobile-brand">
+            <button class="btn btn-sm btn-outline-secondary" id="mobileToggleLeftSidebar">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="mobile-title">Higgs Dashboard</div>
+        </div>
+        <div class="mobile-actions">
+            <div class="dropdown me-2">
+                <button class="btn btn-sm btn-outline-secondary" type="button" id="mobileUserMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="mobileUserMenu">
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Perfil</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Configuración</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary" id="mobileToggleRightSidebar">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Encabezado superior dividido en tres columnas (visible solo en desktop) -->
     <div class="header d-flex">
         <!-- Columna izquierda del encabezado -->
         <div class="header-left px-3">
@@ -192,7 +338,7 @@
             <!-- Tarjetas de estadísticas financieras -->
             <div class="row g-4 mb-4">
                 <!-- Ingresos -->
-                <div class="col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="card rounded-4 border h-100">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-1">
@@ -211,7 +357,7 @@
                 </div>
                 
                 <!-- Gastos -->
-                <div class="col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="card rounded-4 border h-100">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-1">
@@ -229,7 +375,7 @@
                     </div>
                 </div>
                 
-                <!-- Ahorros -->
+                <!-- Ahorro -->
                 <div class="col-md-4">
                     <div class="card rounded-4 border h-100">
                         <div class="card-body">
@@ -252,7 +398,7 @@
             <!-- Primera fila de paneles -->
             <div class="row g-4 mb-4">
                 <!-- Panel de balance y gráfico -->
-                <div class="col-md-8">
+                <div class="col-12 col-lg-8">
                     <div class="card rounded-4 border">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -300,7 +446,7 @@
                 </div>
                 
                 <!-- Panel de tarjeta -->
-                <div class="col-md-4">
+                <div class="col-12 col-lg-4">
                     <div class="card rounded-4 border">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -663,6 +809,9 @@
         </div>
     </div>
     
+    <!-- Overlay para dispositivos móviles -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     
@@ -671,6 +820,108 @@
     
     <!-- JavaScript personalizado -->
     <script src="js/dashboard.js"></script>
+    
+    <script>
+    // Funcionalidad mejorada para dispositivos móviles
+    document.addEventListener('DOMContentLoaded', function() {
+        const leftSidebar = document.getElementById('leftSidebar');
+        const rightSidebar = document.getElementById('rightSidebar');
+        const toggleLeftBtn = document.getElementById('toggleLeftSidebar');
+        const toggleRightBtn = document.getElementById('toggleRightSidebar');
+        const mobileToggleLeftBtn = document.getElementById('mobileToggleLeftSidebar');
+        const mobileToggleRightBtn = document.getElementById('mobileToggleRightSidebar');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        
+        // Función para manejar clic fuera de los sidebars (para cerrarlos)
+        mobileOverlay.addEventListener('click', function() {
+            leftSidebar.classList.remove('show');
+            rightSidebar.classList.remove('show');
+            mobileOverlay.classList.remove('show');
+        });
+        
+        // Función para toggle del sidebar izquierdo
+        function toggleLeftSidebar() {
+            const isOpen = leftSidebar.classList.contains('show');
+            
+            // Cerrar sidebar derecho si está abierto
+            rightSidebar.classList.remove('show');
+            
+            // Toggle sidebar izquierdo
+            leftSidebar.classList.toggle('show');
+            mobileOverlay.classList.toggle('show', !isOpen);
+        }
+        
+        // Función para toggle del sidebar derecho
+        function toggleRightSidebar() {
+            const isOpen = rightSidebar.classList.contains('show');
+            
+            // Cerrar sidebar izquierdo si está abierto
+            leftSidebar.classList.remove('show');
+            
+            // Toggle sidebar derecho
+            rightSidebar.classList.toggle('show');
+            mobileOverlay.classList.toggle('show', !isOpen);
+        }
+        
+        // Event listeners para botones de desktop
+        toggleLeftBtn.addEventListener('click', toggleLeftSidebar);
+        toggleRightBtn.addEventListener('click', toggleRightSidebar);
+        
+        // Event listeners para botones móviles
+        if (mobileToggleLeftBtn) {
+            mobileToggleLeftBtn.addEventListener('click', toggleLeftSidebar);
+        }
+        
+        if (mobileToggleRightBtn) {
+            mobileToggleRightBtn.addEventListener('click', toggleRightSidebar);
+        }
+        
+        // Detectar cambios de tamaño de pantalla para cerrar sidebars en desktop
+        const checkScreenSize = function() {
+            if (window.innerWidth >= 768) {
+                leftSidebar.classList.remove('show');
+                rightSidebar.classList.remove('show');
+                mobileOverlay.classList.remove('show');
+            }
+        };
+        
+        // Verificar tamaño inicial
+        checkScreenSize();
+        
+        // Escuchar cambios de tamaño
+        window.addEventListener('resize', checkScreenSize);
+        
+        // Agregar soporte para deslizar desde los bordes en móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const threshold = 100;
+            // Deslizar desde izquierda hacia derecha (abrir sidebar izquierdo)
+            if (touchEndX - touchStartX > threshold && touchStartX < 30) {
+                leftSidebar.classList.add('show');
+                rightSidebar.classList.remove('show');
+                mobileOverlay.classList.add('show');
+            }
+            
+            // Deslizar desde derecha hacia izquierda (abrir sidebar derecho)
+            if (touchStartX - touchEndX > threshold && touchStartX > window.innerWidth - 30) {
+                rightSidebar.classList.add('show');
+                leftSidebar.classList.remove('show');
+                mobileOverlay.classList.add('show');
+            }
+        }
+    });
+    </script>
     
     <!-- Script de inicialización específico de esta página -->
     <script>
