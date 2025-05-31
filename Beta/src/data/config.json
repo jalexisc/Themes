@@ -1,0 +1,10 @@
+{
+  "name": "Beta Dashboard",
+  "version": "1.0.0",
+  "colors": {
+    "primary": "#0d6efd",
+    "secondary": "#6c757d",
+    "background": "#f8f9fa",
+    "card": "#fff"
+  }
+}

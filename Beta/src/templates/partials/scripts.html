@@ -1,0 +1,244 @@
+<!-- Bootstrap 5 JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+<!-- Chart.js para gráficos -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JS Personalizado -->
+<script src="assets/js/dashboard.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Referencias a elementos del DOM
+    const leftSidebar = document.getElementById('leftSidebar');
+    const rightSidebar = document.getElementById('rightSidebar');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+    const toggleLeftBtn = document.getElementById('toggleLeftSidebar');
+    const toggleRightBtn = document.getElementById('toggleRightSidebar');
+    const mobileToggleLeftBtn = document.getElementById('mobileToggleLeftSidebar');
+    const mobileToggleRightBtn = document.getElementById('mobileToggleRightSidebar');
+    const closeRightSidebarBtn = document.getElementById('closeRightSidebar');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const darkModeBtn = document.getElementById('darkModeBtn');
+    const darkModeSetting = document.getElementById('darkModeSetting');
+    
+    // Función para toggle del sidebar izquierdo
+    function toggleLeftSidebar() {
+        const isOpen = leftSidebar.classList.contains('show');
+        // Cerrar sidebar derecho si está abierto
+        rightSidebar.classList.remove('show');
+        // Toggle sidebar izquierdo
+        leftSidebar.classList.toggle('show');
+        mobileOverlay.classList.toggle('show', !isOpen);
+    }
+    
+    // Función para toggle del sidebar derecho
+    function toggleRightSidebar() {
+        const isOpen = rightSidebar.classList.contains('show');
+        // Cerrar sidebar izquierdo si está abierto
+        leftSidebar.classList.remove('show');
+        // Toggle sidebar derecho
+        rightSidebar.classList.toggle('show');
+        mobileOverlay.classList.toggle('show', !isOpen);
+    }
+    
+    // Event listeners para botones de desktop
+    toggleLeftBtn.addEventListener('click', toggleLeftSidebar);
+    toggleRightBtn.addEventListener('click', toggleRightSidebar);
+    
+    // Event listeners para botones de mobile
+    mobileToggleLeftBtn.addEventListener('click', toggleLeftSidebar);
+    mobileToggleRightBtn.addEventListener('click', toggleRightSidebar);
+    closeRightSidebarBtn.addEventListener('click', toggleRightSidebar);
+    
+    // Detectar cambios de tamaño de pantalla para cerrar sidebars en desktop
+    function checkScreenSize() {
+        if (window.innerWidth >= 768) {
+            leftSidebar.classList.remove('show');
+            rightSidebar.classList.remove('show');
+            mobileOverlay.classList.remove('show');
+        }
+    }
+    
+    // Verificar tamaño inicial
+    checkScreenSize();
+    
+    // Escuchar cambios de tamaño
+    window.addEventListener('resize', checkScreenSize);
+    
+    // Cerrar sidebars al hacer clic en el overlay
+    mobileOverlay.addEventListener('click', function() {
+        leftSidebar.classList.remove('show');
+        rightSidebar.classList.remove('show');
+        mobileOverlay.classList.remove('show');
+    });
+    
+    // Gesto de deslizamiento para móviles
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    function handleSwipe() {
+        const swipeDistance = touchEndX - touchStartX;
+        const threshold = 100; // Distancia mínima para considerar un swipe
+        
+        if (swipeDistance > threshold) {
+            // Swipe de izquierda a derecha: abrir sidebar izquierdo
+            leftSidebar.classList.add('show');
+            rightSidebar.classList.remove('show');
+            mobileOverlay.classList.add('show');
+        } else if (swipeDistance < -threshold) {
+            // Swipe de derecha a izquierda: abrir sidebar derecho
+            rightSidebar.classList.add('show');
+            leftSidebar.classList.remove('show');
+            mobileOverlay.classList.add('show');
+        }
+    }
+});
+
+// Script de inicialización específico de esta página
+document.addEventListener('DOMContentLoaded', function() {
+    // Datos para el gráfico de balance
+    const balanceData = {
+        labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+        datasets: [
+            {
+                label: 'Ingresos',
+                data: [320, 280, 300, 340, 360, 300, 380],
+                backgroundColor: 'rgba(76, 110, 245, 0.1)',
+                borderColor: 'rgba(76, 110, 245, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(76, 110, 245, 1)',
+                tension: 0.4,
+                fill: true
+            },
+            {
+                label: 'Gastos',
+                data: [220, 180, 260, 190, 280, 140, 200],
+                backgroundColor: 'rgba(245, 60, 86, 0.1)',
+                borderColor: 'rgba(245, 60, 86, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(245, 60, 86, 1)',
+                tension: 0.4,
+                fill: true
+            }
+        ]
+    };
+
+    // Configuración del gráfico de balance
+    const balanceConfig = {
+        type: 'line',
+        data: balanceData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        boxWidth: 10,
+                        usePointStyle: true,
+                        pointStyle: 'circle',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    titleColor: '#5C6B8B',
+                    bodyColor: '#5C6B8B',
+                    borderColor: '#E0E6ED',
+                    borderWidth: 1,
+                    padding: 10,
+                    cornerRadius: 8,
+                    boxPadding: 4,
+                    usePointStyle: true,
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': $' + context.raw;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    grid: {
+                        color: 'rgba(224, 230, 237, 0.5)'
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return '$' + value;
+                        }
+                    }
+                }
+            }
+        }
+    };
+    
+    // Inicializar gráfico de balance
+    if (document.getElementById('balanceChart')) {
+        new Chart(document.getElementById('balanceChart'), balanceConfig);
+    }
+    
+    // Datos para el gráfico de gastos
+    const expenseData = {
+        labels: ['Alimentación', 'Vivienda', 'Transporte', 'Entretenimiento', 'Otros'],
+        datasets: [{
+            data: [35, 25, 15, 10, 15],
+            backgroundColor: [
+                '#4c6ef8',
+                '#f53c56',
+                '#36b9cc',
+                '#f6c23e',
+                '#1cc88a'
+            ],
+            borderColor: 'transparent',
+            hoverOffset: 4
+        }]
+    };
+
+    // Configuración del gráfico de gastos
+    const expenseConfig = {
+        type: 'doughnut',
+        data: expenseData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    titleColor: '#5C6B8B',
+                    bodyColor: '#5C6B8B',
+                    borderColor: '#E0E6ED',
+                    borderWidth: 1,
+                    padding: 10,
+                    cornerRadius: 8,
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.formattedValue + '%';
+                        }
+                    }
+                }
+            },
+            cutout: '75%'
+        }
+    };
+    
+    // Inicializar gráfico de gastos
+    if (document.getElementById('expenseChart')) {
+        new Chart(document.getElementById('expenseChart'), expenseConfig);
+    }
+});
+</script>

@@ -1,0 +1,1151 @@
+/**
+ * Higgs Dashboard - Tema Higgs
+ * Estilos modernos para la aplicación Higgs
+ */
+
+/* Variables globales para ambos modos (claro y oscuro) */
+:root {
+  /* Tamaños estructurales */
+  --sidebar-width: 280px;
+  --header-height: 60px;
+  
+  /* Colores del modo claro (predeterminado) */
+  --primary-color: #5C6B8B; /* Azul medio para barras, líneas de tiempo */
+  --secondary-color: #344163; /* Azul oscuro para texto primario */
+  --success-color: #5C6B8B; /* Azul medio para elementos exitosos */
+  --info-color: #DCE0EC; /* Azul grisáceo claro para información */
+  --warning-color: #8C94A6; /* Gris plomo para advertencias sutiles */
+  --danger-color: #2B3754; /* Azul pizarra para alertas importantes */
+  --light-color: #EEF1F8; /* Gris lavanda claro para fondos */
+  --dark-color: #2B3754; /* Azul pizarra para elementos destacados */
+  
+  /* Elementos principales en modo claro */
+  --body-bg: var(--light-color);
+  --card-bg: #FFFFFF;
+  --card-border: #CBD3E1;
+  --shadow: 0 2px 0 var(--card-border);
+  --text-color: var(--secondary-color);
+  --border-opacity: 0.05;
+  
+  /* Transparencias comunes */
+  --opacity-light: 0.1;
+  --opacity-medium: 0.3;
+  --opacity-high: 0.7;
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+  background-color: var(--body-bg);
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+}
+
+/* Estilos para lograr una apariencia nítida - APLICACIÓN GLOBAL */
+
+/* Tarjetas con bordes definidos */
+.card {
+  border: 1px solid var(--card-border);
+  box-shadow: none !important;
+  background-color: var(--card-bg);
+}
+
+/* Encabezados de tarjetas */
+.card-header {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* Tarjetas redondeadas */
+.rounded-4 {
+  border-radius: 6px !important;
+}
+
+/* Estilos para iconos más nítidos */
+[class*="bg-opacity"] {
+  opacity: 1 !important;
+  background-color: var(--card-bg) !important;
+  border: 1px solid currentColor !important;
+}
+
+/* Botones con bordes nítidos */
+.btn {
+  border: 1px solid;
+  box-shadow: none !important;
+}
+
+.btn-primary, .btn-success, .btn-danger, .btn-warning, .btn-info {
+  border-color: transparent;
+}
+
+.btn-outline-primary, .btn-outline-secondary, .btn-outline-success, 
+.btn-outline-danger, .btn-outline-warning, .btn-outline-info {
+  background-color: var(--card-bg);
+}
+
+/* Eliminar efectos de difuminado en gráficos */
+canvas {
+  image-rendering: crisp-edges;
+}
+
+/* Tooltips nítidos */
+.tooltip, [data-bs-toggle="tooltip"], .popover, [data-bs-toggle="popover"] {
+  --bs-tooltip-bg: var(--dark-color);
+  --bs-tooltip-opacity: 1;
+}
+
+/* Etiquetas e insignias nítidas */
+.badge {
+  border: 1px solid transparent;
+  font-weight: 600;
+}
+
+/* Alertas nítidas */
+.alert {
+  border: 1px solid;
+  box-shadow: none !important;
+}
+
+/* Formularios nítidos */
+.form-control, .form-select {
+  border: 1px solid var(--card-border);
+  box-shadow: none !important;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: none !important;
+}
+
+/* Tablas nítidas */
+.table {
+  border: 1px solid var(--card-border);
+}
+
+.table th, .table td {
+  border-color: var(--card-border);
+}
+
+/* Dropdowns nítidos */
+.dropdown-menu {
+  border: 1px solid var(--card-border);
+  box-shadow: none !important;
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+}
+
+/* Navs y tabs nítidos */
+.nav-tabs {
+  border-bottom: 1px solid var(--card-border);
+}
+
+.nav-tabs .nav-link.active {
+  border-color: var(--card-border) var(--card-border) var(--card-bg);
+  border-top-width: 2px;
+  border-top-color: var(--primary-color);
+}
+
+/* Inputs nítidos */
+input[type="checkbox"], input[type="radio"] {
+  box-shadow: none !important;
+  border: 1px solid var(--card-border);
+}
+
+/* Bordes nítidos para imágenes */
+img {
+  border: 1px solid transparent;
+}
+
+img.rounded, img.rounded-circle {
+  border: 1px solid var(--card-border);
+}
+
+/* Progress bars nítidos */
+.progress {
+  background-color: var(--light-color);
+  border: 1px solid var(--card-border);
+  box-shadow: none !important;
+}
+
+/* Estilos para modales nítidos */
+.modal-content {
+  border: 1px solid var(--card-border);
+  box-shadow: none !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--card-border);
+}
+
+.modal-footer {
+  border-top: 1px solid var(--card-border);
+}
+
+/* Encabezado superior */
+.header {
+  height: var(--header-height);
+  background-color: var(--primary-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  color: white;
+}
+
+/* Botones en el encabezado */
+.header .btn-outline-secondary {
+  color: white;
+  border-color: white;
+  background-color: transparent;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header .btn-outline-secondary:hover,
+.header .btn-outline-secondary:focus {
+  color: var(--primary-color);
+  background-color: white;
+  border-color: white;
+}
+
+.header .dropdown-toggle::after {
+  color: white;
+}
+
+.header .form-control {
+  border: 1px solid rgba(255, 255, 255, var(--border-opacity));
+  background-color: rgba(255, 255, 255, var(--opacity-light));
+  color: white;
+  height: 38px;
+}
+
+.header .form-control::placeholder {
+  color: rgba(255, 255, 255, var(--opacity-high));
+}
+
+.header .input-group .btn {
+  border-color: rgba(255, 255, 255, var(--border-opacity));
+  color: white;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Uniformidad en elementos del header */
+.header .dropdown,
+.header .input-group,
+.header .btn-group {
+  height: 38px;
+  margin-right: 10px;
+}
+
+.header .input-group {
+  width: 300px;
+}
+
+/* Encabezado columnas */
+.header-left,
+.header-right {
+  width: var(--sidebar-width);
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+.header-left {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+}
+
+/* Estilos para el logo */
+.logo {
+  max-height: 40px;
+  width: auto !important;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.header-center {
+  flex: 1;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-right {
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  justify-content: flex-end;
+}
+
+/* Elementos del encabezado */
+.header .btn-outline-secondary {
+  color: white;
+  border-color: rgba(255, 255, 255, var(--border-opacity));
+}
+
+.header .btn-outline-secondary:hover {
+  background-color: rgba(255, 255, 255, var(--opacity-light));
+  color: white;
+}
+
+.header h4 {
+  color: white;
+}
+
+/* Contenedor principal con 3 columnas */
+.content-wrapper {
+  margin-top: var(--header-height);
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+}
+
+/* Columnas laterales */
+.left-sidebar, .right-sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--card-bg);
+  box-shadow: none;
+  height: calc(100vh - var(--header-height));
+  position: fixed;
+  top: var(--header-height);
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  z-index: 900;
+  box-sizing: border-box; /* Asegura que el padding y border se incluyan en el ancho */
+}
+
+.left-sidebar {
+  left: 0;
+  border-right: 2px solid var(--card-border);
+}
+
+.right-sidebar {
+  right: 0;
+  border-left: 2px solid var(--card-border);
+}
+
+/* Estados colapsados de los sidebars */
+.left-sidebar.collapsed {
+  left: calc(-1 * var(--sidebar-width));
+}
+
+.right-sidebar.collapsed {
+  right: calc(-1 * var(--sidebar-width));
+}
+
+/* Contenido central */
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  margin-right: var(--sidebar-width);
+  padding: 20px;
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Asegura que el padding se incluya en el cálculo */
+}
+
+/* Estados expandidos del contenido */
+.main-content.expanded-left {
+  margin-left: 0;
+}
+
+.main-content.expanded-right {
+  margin-right: 0;
+}
+
+/* Estilos para los encabezados de secciones */
+.section-header {
+  padding: 15px;
+  border-bottom: 1px solid var(--card-border);
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: var(--light-color);
+}
+
+/* Estilos para el menú lateral */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sidebar-menu a:hover {
+  background-color: var(--light-color);
+  color: var(--primary-color);
+}
+
+.sidebar-menu a.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.sidebar-menu a i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.sidebar-menu a:hover i,
+.sidebar-menu a.active i {
+  color: inherit;
+}
+
+/* Tarjetas y componentes */
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  background-color: var(--card-bg);
+}
+
+.card-header {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--card-border);
+  padding: 15px 20px;
+  font-weight: 600;
+  color: var(--dark-color);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Breadcrumb personalizado */
+.breadcrumb {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  padding: 10px 15px;
+}
+
+.breadcrumb-item a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: var(--secondary-color);
+}
+
+/* Tarjetas de estadísticas */
+.stat-card {
+  border-left: 4px solid var(--primary-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card.success {
+  border-left-color: var(--success-color);
+}
+
+.stat-card.info {
+  border-left-color: var(--info-color);
+}
+
+.stat-card.warning {
+  border-left-color: var(--warning-color);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  opacity: 0.7;
+  color: var(--primary-color);
+}
+
+.stat-card.success .stat-icon {
+  color: var(--success-color);
+}
+
+.stat-card.info .stat-icon {
+  color: var(--info-color);
+}
+
+.stat-card.warning .stat-icon {
+  color: var(--warning-color);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .left-sidebar.collapsed, 
+  .right-sidebar.collapsed {
+    width: 0;
+    padding: 0;
+    visibility: hidden;
+  }
+  
+  .main-content.expanded-left {
+    margin-left: 0;
+  }
+  
+  .main-content.expanded-right {
+    margin-right: 0;
+  }
+}
+
+/* Estilos adicionales de la barra lateral */
+.sidebar-brand {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.sidebar-nav {
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav .nav-item {
+  padding: 0.5rem 1rem;
+}
+
+.sidebar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 0.35rem;
+}
+
+.sidebar-nav .nav-link:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav .nav-link.active {
+  color: white;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav .nav-link i {
+  margin-right: 0.75rem;
+  width: 20px;
+  text-align: center;
+}
+
+/* Contenido principal */
+.main-content {
+  margin-left: 280px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.main-content.expanded {
+  margin-left: 70px;
+}
+
+/* Navbar superior */
+.topbar {
+  height: 70px;
+  background-color: white;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+}
+
+/* Tarjetas del dashboard */
+.card {
+  border: none;
+  border-radius: 0.35rem;
+  box-shadow: var(--shadow);
+  background-color: var(--card-bg);
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--card-border);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+/* Tarjetas de estadísticas */
+.stats-card {
+  border-left: 4px solid;
+  border-radius: 0.35rem;
+}
+
+.stats-card.primary {
+  border-left-color: var(--primary-color);
+}
+
+.stats-card.success {
+  border-left-color: var(--success-color);
+}
+
+.stats-card.info {
+  border-left-color: var(--info-color);
+}
+
+.stats-card.warning {
+  border-left-color: var(--warning-color);
+}
+
+.stats-icon {
+  font-size: 2rem;
+  opacity: 0.3;
+}
+
+/* Editor SQL */
+.sql-editor {
+  border-radius: 0.35rem;
+  font-family: 'Fira Code', Consolas, monospace;
+  padding: 1rem;
+  min-height: 200px;
+  resize: vertical;
+  background-color: #f8f9fc;
+  border: 1px solid var(--card-border);
+}
+
+/* Tabla de resultados */
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results-table th {
+  background-color: #f8f9fc;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.results-table th, .results-table td {
+  padding: 0.75rem;
+  border: 1px solid var(--card-border);
+}
+
+/* Loader para consultas */
+.sql-loader {
+  display: none;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.sql-loader.active {
+  display: block;
+}
+
+/* Botones y elementos de formulario */
+.btn-icon {
+  padding: 0.375rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-icon i {
+  margin-right: 0.5rem;
+}
+
+/* Área de notificaciones */
+.notification-area {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+/* Animación de carga */
+.spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .sidebar.collapsed {
+    display: none;
+  }
+  
+  .main-content.expanded {
+    margin-left: 0;
+  }
+}
+
+/* Colores del modo oscuro */
+.dark-mode {
+    /* Colores principales del tema oscuro */
+    --body-bg: #0E1A2B;               /* Azul profundo - Fondo principal */
+    --card-bg: #18253D;               /* Azul marino oscuro - Tarjetas */
+    --text-color: #F5F7FA;            /* Blanco suave - Texto principal */
+    --text-muted: #8C98B3;            /* Gris acero - Texto secundario */
+    --card-border: #1E2C44;           /* Borde sutil para elementos */
+    --border-strong: #273B5C;         /* Borde más visible */
+    --input-bg: #152238;              /* Fondo para campos, un poco más claro */
+    --hover-bg: #1F3154;              /* Color para hover */
+    --border-opacity: 0.2;            /* Opacidad para bordes */
+    
+    /* Colores de acento en modo oscuro */
+    --primary-color: #9A6BFF;         /* Violeta neón - Color principal */
+    --secondary-color: #8C98B3;       /* Gris acero - Color secundario */
+    --success-color: #00E3AA;         /* Verde menta - Éxito */
+    --info-color: #00D1FF;            /* Cian brillante - Información */
+    --warning-color: #F43DD4;         /* Fucsia eléctrico - Advertencia */
+    --danger-color: #FF4F5E;          /* Rojo coral - Peligro/Error */
+    --light-color: #1F3154;           /* Azul oscuro claro - Fondo alternativo */
+    --dark-color: #0E1A2B;            /* Azul profundo - Color oscuro */
+    
+    /* Alias para compatibilidad con estilos existentes */
+    --dark-bg: var(--body-bg);
+    --dark-card-bg: var(--card-bg);
+    --dark-text: var(--text-color);
+    --dark-text-secondary: var(--text-muted);
+    --dark-border-subtle: var(--card-border);
+    --dark-border: var(--border-strong);
+    --dark-input-bg: var(--input-bg);
+    --dark-hover: var(--hover-bg);
+    --dark-cyan: var(--info-color);
+    --dark-green: var(--success-color);
+    --dark-red: var(--danger-color);
+    --dark-purple: var(--primary-color);
+    --dark-pink: var(--warning-color);
+}
+
+/* Estilos para el modo oscuro - Tema azul-violeta */
+body.dark-mode {
+    background-color: var(--body-bg);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Tarjetas en modo oscuro */
+body.dark-mode .card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--text-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Tarjetas con bordes de colores */
+body.dark-mode .card.border-primary,
+body.dark-mode .border-primary {
+    border-color: var(--dark-purple) !important;
+}
+
+body.dark-mode .card.border-success,
+body.dark-mode .border-success {
+    border-color: var(--dark-green) !important;
+}
+
+body.dark-mode .card.border-info,
+body.dark-mode .border-info {
+    border-color: var(--dark-cyan) !important;
+}
+
+body.dark-mode .card.border-warning,
+body.dark-mode .border-warning {
+    border-color: var(--dark-pink) !important;
+}
+
+body.dark-mode .card.border-danger,
+body.dark-mode .border-danger {
+    border-color: var(--dark-red) !important;
+}
+
+body.dark-mode .card.border-secondary,
+body.dark-mode .border-secondary {
+    border-color: var(--dark-text-secondary) !important;
+}
+
+/* Iconos con bordes */
+body.dark-mode .border {
+    border-color: var(--dark-border-subtle) !important;
+}
+
+/* Encabezados de tarjetas en modo oscuro */
+body.dark-mode .card-header {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border-subtle);
+    color: var(--dark-cyan);
+    font-weight: bold;
+}
+
+/* Títulos en modo oscuro */
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
+    color: var(--dark-purple);
+}
+
+body.dark-mode h4, body.dark-mode h5, body.dark-mode h6 {
+    color: var(--dark-cyan);
+}
+
+/* Enlaces en modo oscuro */
+body.dark-mode a {
+    color: var(--dark-cyan);
+    transition: color 0.2s;
+}
+
+body.dark-mode a:hover {
+    color: var(--dark-purple);
+    text-decoration: none;
+}
+
+/* Breadcrumb en modo oscuro */
+body.dark-mode .breadcrumb {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--card-border);
+}
+
+body.dark-mode .bg-light {
+    background-color: var(--card-bg) !important;
+}
+
+body.dark-mode .bg-white {
+    background-color: var(--card-bg) !important;
+}
+
+body.dark-mode .bg-transparent {
+    background-color: transparent !important;
+}
+
+body.dark-mode .breadcrumb-item {
+    color: var(--text-color);
+}
+
+body.dark-mode .breadcrumb-item.active {
+    color: var(--warning-color);
+}
+
+body.dark-mode .breadcrumb-item a {
+    color: var(--info-color);
+}
+
+body.dark-mode .breadcrumb-item a:hover {
+    color: var(--primary-color);
+}
+
+body.dark-mode .breadcrumb-item+.breadcrumb-item::before {
+    color: var(--text-muted);
+}
+
+/* Barras laterales en modo oscuro */
+body.dark-mode .left-sidebar,
+body.dark-mode .right-sidebar {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+    color: var(--text-color);
+}
+
+body.dark-mode .sidebar-menu li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+/* Section-header en modo oscuro */
+body.dark-mode .section-header {
+    background-color: var(--dark-input-bg);
+    border-bottom: 1px solid var(--dark-border-subtle);
+    color: var(--dark-pink);
+    font-weight: 600;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Encabezado en modo oscuro */
+body.dark-mode .header {
+    background-color: var(--dark-bg);
+    border-bottom: 1px solid var(--dark-border-subtle);
+}
+
+/* Tablas en modo oscuro */
+body.dark-mode .table {
+    color: var(--dark-text);
+}
+
+body.dark-mode .table thead th {
+    background-color: var(--dark-input-bg);
+    border-color: var(--dark-border-subtle);
+    color: var(--dark-green);
+}
+
+body.dark-mode .table tbody td {
+    border-color: var(--dark-border-subtle);
+}
+
+body.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(21, 34, 56, 0.3);
+}
+
+/* Resaltar fila al pasar el ratón */
+body.dark-mode .table tbody tr:hover {
+    background-color: rgba(154, 107, 255, 0.1); /* Violeta neón con transparencia */
+}
+
+/* Badges y etiquetas */
+body.dark-mode .badge {
+    font-weight: normal;
+}
+
+body.dark-mode .badge-primary, 
+body.dark-mode .bg-primary {
+    background-color: var(--dark-purple) !important;
+}
+
+body.dark-mode .badge-success, 
+body.dark-mode .bg-success {
+    background-color: var(--dark-green) !important;
+}
+
+body.dark-mode .badge-info, 
+body.dark-mode .bg-info {
+    background-color: var(--dark-cyan) !important;
+}
+
+body.dark-mode .badge-warning, 
+body.dark-mode .bg-warning {
+    background-color: var(--dark-pink) !important;
+    color: var(--dark-bg) !important;
+}
+
+body.dark-mode .badge-danger, 
+body.dark-mode .bg-danger {
+    background-color: var(--dark-red) !important;
+}
+
+/* Inputs en modo oscuro */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select,
+body.dark-mode .form-control {
+    background-color: var(--dark-input-bg);
+    border-color: var(--dark-border-subtle);
+    color: var(--dark-text);
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus,
+body.dark-mode .form-control:focus {
+    border-color: var(--dark-cyan);
+    box-shadow: 0 0 0 0.2rem rgba(0, 209, 255, 0.25);
+}
+
+/* Botones en modo oscuro */
+body.dark-mode .btn-outline-secondary {
+    border-color: var(--dark-cyan);
+    color: var(--dark-cyan);
+}
+
+body.dark-mode .btn-outline-secondary:hover {
+    background-color: var(--dark-cyan);
+    color: var(--dark-bg);
+}
+
+body.dark-mode .btn-primary {
+    background-color: var(--dark-purple);
+    border-color: var(--dark-purple);
+}
+
+body.dark-mode .btn-success {
+    background-color: var(--dark-green);
+    border-color: var(--dark-green);
+}
+
+body.dark-mode .btn-info {
+    background-color: var(--dark-cyan);
+    border-color: var(--dark-cyan);
+}
+
+body.dark-mode .btn-warning {
+    background-color: var(--dark-pink);
+    border-color: var(--dark-pink);
+}
+
+body.dark-mode .btn-danger {
+    background-color: var(--dark-red);
+    border-color: var(--dark-red);
+}
+
+/* Dropdown menus en modo oscuro */
+body.dark-mode .dropdown-menu {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border-subtle);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .dropdown-item {
+    color: var(--dark-text);
+}
+
+body.dark-mode .dropdown-item:hover {
+    background-color: var(--dark-hover);
+    color: var(--dark-purple);
+}
+
+body.dark-mode .dropdown-divider {
+    border-color: var(--dark-border-subtle);
+}
+
+/* Iconos en modo oscuro */
+body.dark-mode .fa, 
+body.dark-mode .fas, 
+body.dark-mode .far, 
+body.dark-mode .fab {
+    color: inherit;
+}
+
+body.dark-mode .text-primary {
+    color: var(--dark-purple) !important;
+}
+
+body.dark-mode .text-success {
+    color: var(--dark-green) !important;
+}
+
+body.dark-mode .text-info {
+    color: var(--dark-cyan) !important;
+}
+
+body.dark-mode .text-warning {
+    color: var(--dark-pink) !important;
+}
+
+body.dark-mode .text-danger {
+    color: var(--dark-red) !important;
+}
+
+body.dark-mode .text-muted {
+    color: var(--dark-text-secondary) !important;
+}
+
+body.dark-mode .text-secondary {
+    color: var(--dark-cyan) !important;
+}
+
+/* Barras de progreso */
+body.dark-mode .progress {
+    background-color: var(--dark-input-bg);
+}
+
+/* List group en modo oscuro */
+body.dark-mode .list-group-item {
+    background-color: var(--dark-card-bg);
+    border-color: var(--dark-border-subtle);
+    color: var(--dark-text);
+}
+
+body.dark-mode .list-group-item:hover {
+    background-color: var(--dark-hover);
+}
+
+body.dark-mode .list-group-item.active {
+    background-color: var(--dark-cyan);
+    border-color: var(--dark-cyan);
+    color: var(--dark-bg);
+}
+
+body.dark-mode .list-group-item-action:focus, 
+body.dark-mode .list-group-item-action:hover {
+    background-color: var(--dark-hover);
+    color: var(--dark-text);
+}
+
+body.dark-mode .list-group-item-primary {
+    background-color: rgba(154, 107, 255, 0.2);
+    color: var(--dark-purple);
+}
+
+body.dark-mode .list-group-item-success {
+    background-color: rgba(0, 227, 170, 0.2);
+    color: var(--dark-green);
+}
+
+body.dark-mode .list-group-item-info {
+    background-color: rgba(0, 209, 255, 0.2);
+    color: var(--dark-cyan);
+}
+
+body.dark-mode .list-group-item-warning {
+    background-color: rgba(244, 61, 212, 0.2);
+    color: var(--dark-pink);
+}
+
+body.dark-mode .list-group-item-danger {
+    background-color: rgba(255, 79, 94, 0.2);
+    color: var(--dark-red);
+}
+
+body.dark-mode .progress-bar {
+    background-color: var(--dark-purple);
+}
+
+body.dark-mode .progress-bar-success {
+    background-color: var(--dark-green);
+}
+
+body.dark-mode .progress-bar-info {
+    background-color: var(--dark-cyan);
+}
+
+body.dark-mode .progress-bar-warning {
+    background-color: var(--dark-pink);
+}
+
+body.dark-mode .progress-bar-danger {
+    background-color: var(--dark-red);
+}
